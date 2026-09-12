@@ -47,11 +47,12 @@ After our official submission, our mentor reviewed our approach and raised three
 
 ## Appendix
 
-**Team Satima:** 
-- [Inemesit Friday Umoh](https://github.com/InemesitUmoh)
-- Solomon Adegoke
-- Victor Onwuelu
-- Adamo Idowu
+**Team Satima** 
+- **Team Lead:** [Inemesit Friday Umoh](https://github.com/InemesitUmoh)
+- **Team Members:**
+   - Solomon Adegoke
+   - Victor Onwuelu
+   - Adamo Idowu
 
 **Mentor:** Patrick Ikongha
 
