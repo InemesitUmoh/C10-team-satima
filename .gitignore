@@ -1,0 +1,14 @@
+# Competition data -- not redistributed per competition rules; see data/README.md
+data/documents.csv
+data/train_prompts.csv
+data/test_prompts.csv
+data/sample_submission.csv
+data/baseline_submission.csv
+
+# Kaggle/Jupyter artifacts
+.ipynb_checkpoints/
+*.pyc
+__pycache__/
+
+# OS files
+.DS_Store
