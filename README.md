@@ -1,4 +1,4 @@
-# African Folktales SLM Challenge — Team Satima
+# African Folktales Small Language Model (SLM) Challenge — Team Satima
 
 Fine-tuning Gemma-2-2b-it with LoRA to generate African-folktale-style short stories from thematic prompts, for the *African Folktales SLM Challenge* (TRI AI Saturdays, Cohort 10).
 
