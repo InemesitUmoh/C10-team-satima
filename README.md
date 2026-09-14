@@ -4,6 +4,25 @@ Fine-tuning Gemma-2-2b-it with LoRA to generate African-folktale-style short sto
 
 **Official result:** 176.25 public / 157.66 private mean Levenshtein distance (lower is better), vs. a provided TF-IDF baseline of ~209.3.
 
+This project treats transparent, verifiable data sourcing as a core deliverable, not an afterthought — see Dataset and References below.
+
+## Contents
+- [Highlights](#highlights)
+- [Dataset](#dataset)
+- [Training Pipeline](#training-pipeline)
+- [Evaluation](#evaluation)
+- [Sample Outputs](#sample-outputs)
+- [Reproduction](#reproduction)
+- [Post-Submission Exploration](#post-submission-exploration)
+- [Appendix](#appendix)
+- [References](#references)
+
+## Highlights
+- Improved ~25% over the provided retrieval baseline through fine-tuning, not just prompt engineering.
+- All 16 supplemental data sources independently verified and forum-disclosed; two inaccurate citations found and corrected during our own review.
+- Responded to mentor feedback with real experiments (cross-validation, loss-masking, alternate LoRA targeting), documented honestly including the approaches that *didn't* work.
+- Built an authenticity rubric and provenance-tracing report addressing the competition's own stated limitation that Levenshtein distance doesn't capture oral-quality performance.
+
 See `docs/problem_statement.pdf` for the full values-led problem statement.
 
 ## Dataset
@@ -25,6 +44,17 @@ We supplemented `documents.csv` (used only as "Style cue" generation context, ne
 - **Competition metric:** mean character-level Levenshtein distance against hidden references.
 - **Automated quality checks:** every generated story is screened for leaked labels, length outliers, repetition loops, garbled text, and unclosed sentences before submission.
 - **Local validation (post-submission):** k-fold cross-validation and a train/validation loss diagnostic were added after our official submission; see below.
+
+  ## Sample Outputs
+
+**Prompt:** "Hyena jumps at the moon in water."
+> A humbled hyena guards a watering hole by night; owls say humility keeps fireflies safe as well.
+
+**Prompt:** "Create an East African tale of hare claiming thunder for himself."
+> Hare borrowed thunder in a hollow drum; Elephant listened and returned the rhythm to grazing cattle. Hare ran away empty-bellied, humbled by shared time over vanity.
+
+**Prompt:** "Tell a moral market tale about returning a lost cowrie shell."
+> Returning a dropped coin led rice at dawn to an idle loom and finally to widows sharing bread. Small acts multiply when kept small enough for another person's fire.
 
 ## Reproduction
 
@@ -57,3 +87,22 @@ After our official submission, our mentor reviewed our approach and raised three
 **Mentor:** Patrick Ikongha
 
 **Course:** TRI AI Saturdays / Google DeepMind AI Research Foundations Course, Cohort 10.
+
+## References
+
+**Traditional motif sources (verified during data curation):**
+- Ashanti/Akan tradition (Ghana): "How Spider Obtained the Sky God's Stories." Wilder Utopia. https://wilderutopia.com/traditions/myth/ashanti-of-ghana-how-spider-obtained-the-sky-gods-stories/
+- East African oral tradition: "Oral Literature: Hippopotamus and Elephant Test Their Strength." Comboni Missionaries. https://combonimissionaries.ie/2022/06/23/oral-literature-hippopotamus-and-elephant-test-their-strength/
+- Congolese tradition (recorded by Père Lepoutre): "The Tortoise and the Eagle." https://georgebransonstories.wordpress.com/2015/11/09/the-tortoise-and-the-eagle-a-mostly-authentic-congolese-fable/
+- Bini tradition (Nigeria): Gerson, Mary-Joan. *Why the Sky Is Far Away*. https://www.goodreads.com/book/show/580458.Why_The_Sky_Is_Far_Away
+- Zulu tradition: "Zulu Mythology." Gods and Monsters. https://godsandmonsters.info/welcome-to-gods-and-monsters/zulu-mythology/
+- Khoisan/San tradition (Southern Africa): "Kaggen." Mythopedia. https://mythopedia.com/topics/kaggen/ ; "Tortoise and the Baboon." Gateway Africa. https://www.gateway-africa.com/stories/Tortoise_and_the_Baboon.html
+
+**Tools and frameworks:**
+- Hugging Face `transformers`, `peft`, `datasets` — https://github.com/huggingface
+- `trl` (`SFTTrainer`, `DataCollatorForCompletionOnlyLM`) — https://github.com/huggingface/trl
+- Google, *Gemma 2 Model Card* — https://ai.google.dev/gemma
+- scikit-learn (`TfidfVectorizer`, `KFold`) — https://scikit-learn.org
+
+**Competition materials:**
+- African Folktales SLM Challenge, Overview, Data, and Rules tabs, TRI AI Saturdays / Kaggle, 2026.
